@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>New Web Project</title>
+    <style type="text/css">
+        form#product_form select{
+            width: 200px;
+            height: 24px;
+            font-size: 20px;
+        }
+    </style>
+    <script type="text/javascript" src="./main.js"></script>
+</head>
+<body>
+<h1>New Web Project Page</h1>
+
+<form id="product_form">
+    <!--<select id="big_kind">-->
+        <!--<option value="" selected="selected">Nothing selected</option>-->
+        <!--<option value="0">big_op0</option>-->
+        <!--<option value="1">big_op1</option>-->
+    <!--</select>-->
+
+    <select id="big_kind"></select>
+    <select id="small_kind"></select>
+</form>
+
+<div id="dis"></div>
+
+<script type="text/javascript">
+//    var big_kind = document.getElementById("big_kind");
+//    var small_kind = document.getElementById("small_kind");
+//    var small_kinds = new Array();
+//    small_kinds[0] = new Array('a', 'b');
+//    small_kinds[1] = new Array('c', 'd');
+//
+//    var num_small_kind = document.getElementById("big_kind").options.length;
+//    console.log(num_small_kind);
+//    var small_kinds = new Array(num_small_kind);
+//    small_kinds[0]=new Array({"Nothing":""});
+//    small_kinds[1]=new Array({"a":"a0"}, {"b":"b1"});
+//    small_kinds[2]=new Array({"c":"c0"}, {"d":"d1"}, {"e":"e2"});
+//
+//    function syncKind(s){
+//        small_kind.options.length = 0;
+//        console.log(s);
+//        if(s == ""){
+//            for(var i= 0, size=small_kinds[0].length; i<size; i++){
+//                small_kind.options[small_kind.options.length] = new Option(small_kinds[0]);
+//            }
+//        }
+//        if(s == "0"){
+//            for(var i=0, size=small_kinds[1].length; i<size; i++){
+//                small_kind.options[small_kind.options.length] = new Option(small_kinds[1][i]);
+//            }
+//        }
+//        if(s == "1"){
+//            for(var i=0, size=small_kinds[2].length; i<size; i++){
+//                small_kind.options[small_kind.options.length] = new Option(small_kinds[2][i]);
+//            }
+//        }
+//    }
+
+//var iMax = 20;
+//var jMax = 10;
+//var f = new Array();
+//
+//for (i=0;i<iMax;i++) {
+//    f[i]=new Array();
+//    for (j=0;j<jMax;j++) {
+//        f[i][j]=0;
+//    }
+//}
+
+// 1.0版本的数据格式。一个二维数组，按照"value,text,value,text...“的格式填充
+var data = [["v", "t"], ["v1","t1", "v2","t2"], ["v3","t3", "v4","t4", "v5","t5"]];
+
+// 2.0版本的数据格式。对象数组，可由PHP的json_encode()将一个关联数组转换成一个JS可用的对象数组。
+   var d = [
+        {"v":"t"},
+        {"v1":"t1", "v2":"t2"},
+       {"v3":"t3", "v4":"t4", "v5":"t5"}
+    ];
+    var pd = [
+        {'':'Please select'},
+        {'0':'big_op0'},
+        {'1':'big_op1'}
+    ];
+
+// JSON
+var txt = '{"employees":[' +
+        '{"firstName":"Bill","lastName":"Gates" },' +
+        '{"firstName":"George","lastName":"Bush" },' +
+        '{"firstName":"Thomas","lastName":"Carter" }]}';
+obj = JSON.parse(txt);
+
+    Widget.getWidget()
+            .getOptions("big_kind", true)
+            .addJSONData(pd, true)
+            .initParent();
+
+    Widget.getWidget()
+            .getOptions("small_kind", false)
+            .addJSONData(d, false)
+            .setOnChangeListener("big_kind");
+</script>
+
+</body>
+</html>
